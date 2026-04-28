@@ -1,0 +1,23 @@
+# AI agent local files
+.claude/
+.cursor/
+.continue/
+.aider*
+.opencode/
+opencode.json
+CLAUDE.md
+AGENTS.md
+.cursorrules
+
+# Agent caches and transcripts
+*.chat.md
+*.conversation.md
+*.transcript.md
+ai-notes/
+agent-notes/
+
+# OS/editor local files
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
