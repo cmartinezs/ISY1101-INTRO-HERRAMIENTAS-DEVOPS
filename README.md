@@ -4,21 +4,6 @@ Repositorio de documentación y actividades para la asignatura **ISY1101 - Intro
 
 El material está orientado a que las y los estudiantes comprendan cómo aplicar controles de calidad de software dentro de un flujo CI/CD, primero de forma manual y luego automatizada mediante un pipeline.
 
-## Semana 1 — Diagnóstico
-
-Antes de comenzar con las actividades DevOps, la asignatura incorpora un **diagnóstico obligatorio y formativo** para verificar las competencias fullstack que se consideran prerrequisito del curso.
-
-El diagnóstico incluye:
-
-- desarrollo grupal de una aplicación fullstack sencilla;
-- levantamiento básico de requerimientos;
-- decisiones arquitectónicas justificadas;
-- frontend, backend/API y persistencia integrados;
-- ejecución mediante Docker y Docker Compose;
-- cuestionario individual y privado de 10 preguntas.
-
-Material: [`semana-01/diagnostico/`](semana-01/diagnostico/README.md)
-
 ## Guías disponibles
 
 ### 1. Aplicación manual de herramientas de calidad
