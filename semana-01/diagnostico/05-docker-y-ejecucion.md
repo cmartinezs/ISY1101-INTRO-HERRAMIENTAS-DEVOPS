@@ -4,26 +4,33 @@ El diagnóstico debe permitir observar si el equipo comprende los conceptos bás
 
 No se busca optimización avanzada de imágenes ni orquestación productiva. Se busca una solución reproducible y comprensible.
 
+El stack de la actividad es:
+
+- backend con **Java 21 + Spring Boot 4.x**;
+- frontend con **React 19.2 + Vite** o **Next.js**;
+- persistencia con **MySQL o PostgreSQL**;
+- ejecución mediante **Docker y Docker Compose**.
+
 ---
 
 ## 5.1 Componentes esperados
 
-La solución debería considerar, como mínimo:
+La solución debe considerar, como mínimo:
 
-- frontend;
-- backend/API;
-- base de datos.
-
-Cada equipo debe decidir qué componentes contenerizar y justificarlo.
+- frontend React;
+- backend/API Spring Boot;
+- base de datos relacional.
 
 Como referencia, una composición típica puede ser:
 
 ```text
 Docker Compose
-├── frontend
-├── backend
-└── database
+├── frontend     # React + Vite o Next.js
+├── backend      # Java 21 + Spring Boot 4.x
+└── database     # MySQL o PostgreSQL
 ```
+
+El equipo debe ser capaz de explicar cómo se comunican estos servicios y qué puertos necesita exponer al host.
 
 ---
 
@@ -35,11 +42,36 @@ Como mínimo deben ser capaces de explicar:
 
 - qué imagen base utilizan;
 - qué archivos copian;
-- cuándo se instalan dependencias;
+- cuándo se descargan o instalan dependencias;
+- cómo se ejecuta el build;
 - qué puerto expone el servicio;
 - qué comando inicia la aplicación.
 
-No copien un Dockerfile desde Internet sin poder explicar sus instrucciones.
+### Backend
+
+El contenedor del backend debe ejecutar la aplicación con **Java 21**. El equipo puede utilizar una estrategia simple o un build multi-stage, pero debe entenderla y poder explicarla.
+
+Deben poder identificar claramente:
+
+```text
+código fuente
+    ↓
+build Maven o Gradle
+    ↓
+artefacto ejecutable
+    ↓
+runtime Java 21
+    ↓
+Spring Boot 4.x
+```
+
+### Frontend
+
+Si utilizan **React + Vite**, deben explicar la diferencia entre el servidor de desarrollo y el artefacto generado para producción.
+
+Si utilizan **Next.js**, deben explicar qué proceso necesita permanecer ejecutándose y por qué su contenerización puede diferir de una SPA estática generada con Vite.
+
+No copien Dockerfiles desde Internet sin poder explicar sus instrucciones.
 
 ---
 
@@ -62,13 +94,15 @@ El equipo debe documentar:
 - volúmenes utilizados;
 - dependencias entre servicios.
 
+El frontend debe poder consumir la API Spring Boot y el backend debe conectarse a la base de datos utilizando nombres de servicio o configuración apropiada para el entorno Docker.
+
 ---
 
 ## 5.4 Persistencia
 
 Los datos no deberían desaparecer simplemente por detener y volver a iniciar los contenedores.
 
-Si la base de datos se ejecuta en Docker, utilicen un volumen persistente y expliquen su propósito.
+La base de datos debe ejecutarse en Docker utilizando un volumen persistente, y el equipo debe explicar su propósito.
 
 El docente puede comprobarlo mediante una secuencia similar a:
 
@@ -100,7 +134,10 @@ La aplicación debe poder configurarse sin modificar código fuente para cambiar
 - puerto;
 - nombre de base de datos;
 - credenciales de desarrollo;
-- URL del backend consumida por el frontend, cuando corresponda.
+- URL del backend consumida por el frontend;
+- perfiles o propiedades relevantes de Spring Boot.
+
+Se espera que comprendan cómo variables de entorno utilizadas por Docker Compose terminan siendo consumidas por Spring Boot o por la aplicación frontend.
 
 ---
 
@@ -109,12 +146,15 @@ La aplicación debe poder configurarse sin modificar código fuente para cambiar
 Antes de considerar terminado el diagnóstico, el equipo deberá comprobar:
 
 1. Las imágenes se construyen sin error.
-2. Los contenedores inician correctamente.
-3. El frontend puede comunicarse con el backend.
-4. El backend puede comunicarse con la base de datos.
-5. El CRUD funciona utilizando la solución levantada en Docker.
-6. Las funcionalidades adicionales también funcionan.
-7. Un integrante puede clonar el repositorio en un entorno limpio y seguir el README para ejecutar la aplicación.
+2. El backend se ejecuta con Java 21 y Spring Boot 4.x.
+3. El frontend React inicia correctamente en la alternativa escogida.
+4. Los contenedores inician correctamente.
+5. El frontend puede comunicarse con el backend.
+6. El backend puede comunicarse con la base de datos.
+7. El CRUD funciona utilizando la solución levantada en Docker.
+8. Las funcionalidades adicionales también funcionan.
+9. Los datos persisten después de detener y volver a levantar los contenedores.
+10. Un integrante puede clonar el repositorio en un entorno limpio y seguir el README para ejecutar la aplicación.
 
 ---
 
@@ -129,6 +169,8 @@ Al finalizar el trabajo, cualquier integrante debería poder responder, al menos
 - por qué un volumen puede ser necesario;
 - cómo se comunican los servicios;
 - qué problema resuelven las variables de entorno;
-- qué ocurre cuando un contenedor se elimina.
+- qué ocurre cuando un contenedor se elimina;
+- cómo se genera y ejecuta el artefacto Spring Boot;
+- qué diferencia existe entre servir una SPA construida con Vite y ejecutar una aplicación Next.js.
 
 Estas ideas también serán retomadas en el cuestionario individual.
