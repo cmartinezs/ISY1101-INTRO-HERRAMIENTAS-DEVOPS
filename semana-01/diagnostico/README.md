@@ -48,19 +48,34 @@ La documentación está dividida en los siguientes capítulos:
 
 ---
 
-## Tecnologías
+## Stack tecnológico obligatorio
 
-El diagnóstico debe realizarse utilizando tecnologías que el equipo ya conozca por asignaturas anteriores. No se evaluará aprender un framework nuevo durante esta actividad.
+El diagnóstico debe realizarse con el stack fullstack trabajado previamente en la carrera. Para esta actividad se estandariza la tecnología para que el foco esté en la integración, la arquitectura y Docker, y no en comparar frameworks distintos.
 
-Como referencia, una solución puede utilizar:
+### Backend
 
-- **Frontend:** HTML/CSS/JavaScript o React.
-- **Backend:** Node.js/Express, Java/Spring Boot u otra tecnología previamente trabajada en la carrera y autorizada por el docente.
-- **Persistencia:** MySQL, PostgreSQL u otra base de datos relacional conocida por el equipo.
+- **Java 21**.
+- **Spring Boot 4.x**.
+- API REST sobre HTTP/JSON.
+- Persistencia mediante Spring Data JPA o mecanismo equivalente dentro del ecosistema Spring.
+
+### Frontend
+
+- **React 19.2**, correspondiente a la versión estable actual de React al momento de preparar esta actividad.
+- El equipo debe utilizar una de estas dos alternativas:
+  - **React + Vite** — recomendado para una SPA simple. Puede utilizarse Vite 8.x.
+  - **Next.js** — permitido si el equipo ya lo domina y puede justificar su elección.
+- Se permite JavaScript o TypeScript. La elección debe documentarse.
+
+### Persistencia e infraestructura
+
+- **Base de datos relacional:** MySQL o PostgreSQL.
 - **Control de versiones:** Git + GitHub.
 - **Contenedores:** Docker y Docker Compose.
 
-La elección tecnológica debe quedar justificada en la documentación arquitectónica.
+No se debe reemplazar Java/Spring Boot por Node.js, Python, .NET u otro backend, ni React por otro framework frontend, salvo autorización explícita del docente.
+
+La elección entre Vite y Next.js, entre JavaScript y TypeScript, y entre MySQL y PostgreSQL debe quedar justificada en la documentación arquitectónica.
 
 ---
 
